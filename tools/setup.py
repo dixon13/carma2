@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #######################
-#  ACE3 Setup Script  #
+#  carma2 Setup Script  #
 #######################
 
 import os
@@ -20,10 +20,10 @@ def main():
     FULLDIR = "{}\\{}".format(MAINDIR,PROJECTDIR)
     print("""
   ######################################
-  # ACE3 Development Environment Setup #
+  # CARMA2 Development Environment Setup #
   ######################################
 
-  This script will create your ACE3 dev environment for you.
+  This script will create your carma2 dev environment for you.
 
   Before you run this, you should already have:
     - The Arma 3 Tools installed properly via Steam
@@ -31,9 +31,9 @@ def main():
 
   If you have not done those things yet, please abort this script in the next step and do so first.
 
-  This script will create two hard links on your system, both pointing to your ACE3 project folder:
-    [Arma 3 installation directory]\\{} => ACE3 project folder
-    P:\\{}                              => ACE3 project folder
+  This script will create two hard links on your system, both pointing to your carma2 project folder:
+    [Arma 3 installation directory]\\{} => carma2 project folder
+    P:\\{}                              => carma2 project folder
     """)
     print("\n")
 
@@ -58,8 +58,17 @@ def main():
     print("  Project Path: {}".format(projectpath))
 
     repl = input("\nAre these correct? (y/n): ")
-    if repl.lower() != "y":
-        return 3
+    # if repl.lower() != "y":
+    #     print("Setup Exited")
+    #     return 3
+
+    if repl.lower() == "n":
+        repl_ = input("\nDo you want to define your own custom Arma path (y/n): ")
+        if repl_.lower() == "y":
+            armapath = input("Enter your custom Arma path: ")
+        else:
+            print("Setup Exited...")
+            return 3
 
     print("\n# Creating links ...")
 
@@ -97,7 +106,7 @@ if __name__ == "__main__":
     exitcode = main()
 
     if exitcode > 0:
-        print("\nSomething went wrong during the setup. Make sure you run this script as administrator. If these issues persist, please follow the instructions on the ACE3 wiki to perform the setup manually.")
+        print("\nSomething went wrong during the setup. Make sure you run this script as administrator. If these issues persist, please follow the instructions on the carma2 wiki to perform the setup manually.")
     else:
         print("\nSetup successfully completed.")
 
